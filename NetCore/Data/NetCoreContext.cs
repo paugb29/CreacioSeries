@@ -18,5 +18,6 @@ namespace NetCore.Data
 
         public DbSet<NetCore.Models.Plataforma>? Plataforma { get; set; }
         public DbSet<NetCore.Models.Client>? Client { get; set; }
+        public DbSet<NetCore.Models.Book>? Book { get; set; }
     }
 }

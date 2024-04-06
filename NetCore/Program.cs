@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<NetCoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("NetCoreContext") ?? throw new InvalidOperationException("Connection string 'NetCoreContext' not found.")));
-
+builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,5 +26,11 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers(); // Mover esta línea arriba de app.Run()
+    endpoints.MapRazorPages();
+});
 
 app.Run();
